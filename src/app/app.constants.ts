@@ -1,4 +1,4 @@
-export const API_URL = 'http://employee-info-app.herokuapp.com/';
+export const API_URL = 'https://employee-info-app.herokuapp.com/';
 export const API_ALL_LOCATIONS = 'api/locations';
 export const API_ALL_DEPARTMENTS = 'api/departments';
 export const API_ALL_EMPLOYEES = 'api/employees';
