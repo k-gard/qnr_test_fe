@@ -72,6 +72,7 @@ export class DataService {
     let promise: Promise<Department[]> = new Promise((resolve, reject) => {
       this.http.get(API_URL + API_DEPARTMENTS_BY_LOCATION_NAME + name , {responseType : 'text'} ).toPromise().then(
         (response: any) => {
+
                           resolve(this.parse.parseDepartmentXML(response));
                             },
                         );
