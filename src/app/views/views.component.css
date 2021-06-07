@@ -1,0 +1,16 @@
+#tablecontainer {
+    height: 85%;
+}
+
+.table {
+    border: 0px !important;
+}
+
+a:hover,
+tr:hover {
+    cursor: pointer;
+}
+
+.table td th {
+    text-align: center;
+}

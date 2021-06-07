@@ -1,0 +1,98 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="nav navbar-nav navbar-center mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" (click)='viewLocations()'>Locations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)='viewDepartments()'>Departments</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)='viewEmployees()'>Employees</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+
+<div class="container" style="margin-top:30px">
+    <div class="row">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-8">
+            <div class="text-center">
+                <h2>{{title}}</h2>
+            </div>
+            <div class='table table-hover responsive' id='tablecontainer'>
+                <table class="table my-5">
+                    <thead *ngIf="!isEmployee(employeeDetails)" class="text-center thead-dark">
+
+                        <th *ngFor="let header of tableHeaders" scope="col">{{header}}</th>
+
+                    </thead>
+                    <tbody *ngIf="isLocation(currentList[0])">
+                        <tr *ngFor="let location of currentList" [ngClass]="['table-light', 'text-center']" (click)="viewDepartmentsByLocationName(location)">
+                            <td scope="row">{{location.id}}</td>
+                            <td>{{location.name}}</td>
+                        </tr>
+
+                    </tbody>
+                    <tbody *ngIf="isDepartment(currentList[0])">
+                        <tr *ngFor="let department of currentList;let i = index" [ngClass]="['table-light' , 'text-center']" (click)="viewDepartmentEmployees(department)">
+                            <th scope="row">{{department.id}}</th>
+                            <td>{{department.name}}</td>
+                        </tr>
+                    </tbody>
+
+                    <tbody *ngIf="isEmployee(currentList[0])">
+                        <tr *ngFor="let employee of currentList" [ngClass]="['table-light' , 'text-center']" (click)="viewEmployeeInfo(employee)">
+                            <th scope="row">{{employee.id}}</th>
+                            <td>{{employee.firstName}}</td>
+                            <td>{{employee.lastName}}</td>
+                        </tr>
+                    </tbody>
+
+
+                    <tbody *ngIf="isEmployee(employeeDetails)" [ngClass]="['table-light' , 'text-center']">
+                        <tr class="text-center" scope="row">
+                            <td><strong>Id</strong></td>
+                            <td>{{employeeDetails?.id}}</td>
+                        </tr>
+                        <tr class="text-center" scope="row">
+                            <td><strong>First name</strong></td>
+                            <td>{{employeeDetails?.firstName}}</td>
+                        </tr>
+                        <tr class="text-center" scope="row">
+                            <td><strong>Last name</strong></td>
+                            <td>{{employeeDetails?.lastName}}</td>
+                        </tr>
+                        <tr class="text-center" scope="row">
+                            <td><strong>Job</strong></td>
+                            <td>{{employeeDetails?.job}}</td>
+                        </tr>
+                        <tr class="text-center" scope="row">
+                            <td><strong>Manager id</strong></td>
+                            <td>{{employeeDetails?.manager}}</td>
+                        </tr>
+                        <tr class="text-center" scope="row">
+                            <td><strong>Hire date</strong></td>
+                            <td>{{employeeDetails?.hireDate}}</td>
+                        </tr>
+                        <tr class="text-center" scope="row">
+                            <td><strong>Salary</strong></td>
+                            <td>{{employeeDetails?.salary}}</td>
+                        </tr>
+                        <tr class="text-center" scope="row">
+                            <td><strong>Commission</strong></td>
+                            <td>{{employeeDetails?.commission}}</td>
+                        </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
