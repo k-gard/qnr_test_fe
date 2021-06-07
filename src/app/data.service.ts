@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import * as xml2js from 'xml2js';
 import {API_URL, API_ALL_LOCATIONS, API_ALL_DEPARTMENTS, API_ALL_EMPLOYEES, API_EMPLOYEES_BY_DEPARTMENT, API_DEPARTMENTS_BY_LOCATION_NAME} from '..//app/app.constants';
 import { Employee } from './models/Employee';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { analyzeAndValidateNgModules, CompileShallowModuleMetadata } from '@angular/compiler';
 import { Department } from './models/Department';
 import { ParsingService } from './parsing.service';
 
@@ -42,7 +42,9 @@ export class DataService {
       this.http.get(API_URL + API_EMPLOYEES_BY_DEPARTMENT + id , {responseType : 'text'} ).toPromise().then(
         (response: any) => {
           resolve(this.parse.parseEmployeeXML(response));
-        });
+        }).catch((error) => {
+          resolve([]);
+      });;
                             }
       );
       return promise;
@@ -59,7 +61,9 @@ export class DataService {
 
                           resolve(this.parse.parseDepartmentXML(response));
                         }
-            );
+            ).catch((error) => {
+              resolve([]);
+          });
                             }
       );
       return promise;
@@ -75,7 +79,9 @@ export class DataService {
 
                           resolve(this.parse.parseDepartmentXML(response));
                             },
-                        );
+                        ).catch((error) => {
+                          resolve([]);
+                      });
                             }
       );
 
@@ -93,7 +99,9 @@ export class DataService {
       this.http.get(API_URL + API_ALL_LOCATIONS, {responseType : 'text'} ).toPromise().then(
         (response: any) => {
           resolve(this.parse.parseLocationXML(response));
-        });
+        }).catch((error) => {
+          resolve([]);
+      });
             }
   );
     return promise;

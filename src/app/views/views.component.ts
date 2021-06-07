@@ -63,8 +63,7 @@ export class ViewsComponent implements OnInit {
   this.title = 'Employees in '+ department.name + ' department';
   this.tableHeaders = ['Id', 'First name', 'Last name'];
   this.dataservice.getEmployeesByDepartmentId(department.id).then((res) => {
-    console.log(department)
-    console.log(res)
+
     if (res.length === 0){this.title = 'New Department. No Employees yet ';}
     this.currentList = res;
   });
